@@ -48,3 +48,13 @@ Or Shutdown a test environment and delete all data:
 ```
 docker-compose -f your_config_file.yml down -v
 ```
+
+### Common issues
+- Error `bootstrap check failure [1] of [1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+  - Increase the virtual memory areas - 🔗[stackoverflow](https://stackoverflow.com/a/51448773):
+    ```
+        # Change for current session: 
+        $ sysctl -w vm.max_map_count=262144
+
+        # Tip: modify the /etc/sysctl.conf for permanent changes
+    ```
