@@ -58,3 +58,4 @@ docker-compose -f your_config_file.yml down -v
 
         # Tip: modify the /etc/sysctl.conf for permanent changes
     ```
+  - Official Elasticsearch tutorial - [docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/docker.html#docker-compose-file)
