@@ -11,4 +11,5 @@ cluster.initial_master_nodes:
 bootstrap.memory_lock: true
 node.roles:
   - master
+  - data_content
   - data_hot
