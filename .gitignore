@@ -1,0 +1,3 @@
+# Ignore backup folders
+dockerfiles/snapshots-locals/backup/*
+!dockerfiles/snapshots-locals/backup/.gitkeep
