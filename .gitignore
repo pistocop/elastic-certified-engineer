@@ -1,3 +1,5 @@
 # Ignore backup folders
 dockerfiles/snapshots-locals/backup/*
 !dockerfiles/snapshots-locals/backup/.gitkeep
+dockerfiles/data-stream/backup/*
+!dockerfiles/data-stream/backup/.gitkeep
