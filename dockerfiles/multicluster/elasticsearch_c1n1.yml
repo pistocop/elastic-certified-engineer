@@ -1,0 +1,8 @@
+node.name: c1n1
+cluster.name: cluster1
+network.host: 0.0.0.0
+discovery.seed_hosts:
+  - c1n1
+cluster.initial_master_nodes:
+  - c1n1
+bootstrap.memory_lock: true

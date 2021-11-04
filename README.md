@@ -59,3 +59,12 @@ docker-compose -f your_config_file.yml down -v
         # Tip: modify the /etc/sysctl.conf for permanent changes
     ```
   - Official Elasticsearch tutorial - [docs](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/docker.html#docker-compose-file)
+
+- Error `ERROR: for <node_name>  Cannot create container for service <node_name>: not a directory`
+  - You are probably on WSL: reboot your pc, prune (`docker volume prune`) the volumes and try again
+- Error `FileNotFoundError: [Errno 2] No such file or directory` 
+  - If you are on WSL and have just added a new volume:
+    - Cut the container section that use the volume, but keep the volume creation
+    - Run the docker-compose command
+    - Paste the container section again
+    - Run the docker-compose command

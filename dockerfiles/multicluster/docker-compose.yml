@@ -1,0 +1,85 @@
+version: '2.2'
+services:
+  c1n1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    container_name: c1n1
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+      - ./elasticsearch_c1n1.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    ports:
+      - 9200:9200
+    networks:
+      - c1net
+      - c2net
+  c1n2:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    container_name: c1n2
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data03:/usr/share/elasticsearch/data
+      - ./elasticsearch_c1n2.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    networks:
+      - c1net
+  c2n1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    container_name: c2n1
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data02:/usr/share/elasticsearch/data
+      - ./elasticsearch_c2n1.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    ports:
+      - 9201:9200
+    networks:
+        - c2net
+  c1k1:
+    image: docker.elastic.co/kibana/kibana:7.13.0
+    container_name: c1kibana
+    environment:
+      ELASTICSEARCH_HOSTS: http://c1n1:9200
+    ports:
+      - 5601:5601
+    networks:
+      - c1net
+  c2k1:
+    image: docker.elastic.co/kibana/kibana:7.13.0
+    container_name: c2kibana
+    environment:
+      ELASTICSEARCH_HOSTS: http://c2n1:9200
+    ports:
+      - 5602:5601
+    networks:
+      - c2net
+
+volumes:
+  data01:
+    driver: local
+  data02:
+    driver: local
+  data03:
+    driver: local
+
+networks:
+  c1net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+  c2net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
