@@ -1,8 +1,8 @@
 version: '2.2'
 services:
-  es01:
+  c1n1:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
-    container_name: es01
+    container_name: c1n1
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
@@ -11,30 +11,17 @@ services:
         hard: -1
     volumes:
       - data01:/usr/share/elasticsearch/data
-      - ./elasticsearch_es01.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
-      - ./backup:/mnt/bkp:rw
+      - ./elasticsearch_c1n1.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
     ports:
       - 9200:9200
     networks:
-      - esnet
-  es02:
+      - c1net
+    depends_on:
+      c2n1:
+        condition: service_healthy
+  c1n2:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
-    container_name: es02
-    environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - data02:/usr/share/elasticsearch/data
-      - ./elasticsearch_es02.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
-      - ./backup:/mnt/bkp:rw
-    networks:
-      - esnet
-  es03:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
-    container_name: es03
+    container_name: c1n2
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
@@ -43,34 +30,48 @@ services:
         hard: -1
     volumes:
       - data03:/usr/share/elasticsearch/data
-      - ./elasticsearch_es03.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
-      - ./backup:/mnt/bkp:rw
+      - ./elasticsearch_c1n2.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
     networks:
-      - esnet
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.13.0
-    container_name: kibana
+      - c1net
+  c2n1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    container_name: c2n1
     environment:
-      ELASTICSEARCH_HOSTS: http://es01:9200
-    ports:
-      - 5601:5601
-    networks:
-      - esnet
-  metricbeat01:
-    image: docker.elastic.co/beats/metricbeat:7.13.0
-    container_name: metricbeat01
-    environment:
-      ELASTICSEARCH_HOSTS: http://es01:9200
-      KIBANA_HOST: http://kibana:5601
-    command: ["--strict.perms=false"]
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
-      - ./metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro
+      - data02:/usr/share/elasticsearch/data
+      - ./elasticsearch_c2n1.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    ports:
+      - 9201:9200
     networks:
-      - esnet
+        - c1net
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://c2n1:9200"]
+        interval: 15s
+        timeout: 2s
+        retries: 10
+  c1k1:
+    image: docker.elastic.co/kibana/kibana:7.13.0
+    container_name: c1kibana
+    environment:
+      ELASTICSEARCH_HOSTS: http://c1n1:9200
+    ports:
+      - 5601:5601
+    networks:
+      - c1net
+  c2k1:
+    image: docker.elastic.co/kibana/kibana:7.13.0
+    container_name: c2kibana
+    environment:
+      ELASTICSEARCH_HOSTS: http://c2n1:9200
+    ports:
+      - 5602:5601
+    networks:
+      - c1net
 
 volumes:
   data01:
@@ -81,7 +82,7 @@ volumes:
     driver: local
 
 networks:
-  esnet:
+  c1net:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: "false"

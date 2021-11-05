@@ -1,0 +1,13 @@
+node.name: c1n1
+cluster:
+  name: cluster1
+  remote:
+      cluster2: 
+          seeds: c2n1:9300
+          transport.ping_schedule: 30s
+network.host: 0.0.0.0
+discovery.seed_hosts:
+  - c1n1
+cluster.initial_master_nodes:
+  - c1n1
+bootstrap.memory_lock: true

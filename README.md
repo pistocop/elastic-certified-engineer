@@ -68,3 +68,8 @@ docker-compose -f your_config_file.yml down -v
     - Run the docker-compose command
     - Paste the container section again
     - Run the docker-compose command
+  - If you are on WSL and you are sure the code is correct:
+    - Restart the docker desktop app
+    - Close all WSL window instances
+    - Reopen a WSL and clear all containers and volumes
+    - Try again
