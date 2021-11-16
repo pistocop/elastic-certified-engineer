@@ -7,3 +7,4 @@ bootstrap.memory_lock: true
 node.roles:
   - master
   - data
+  - ingest
