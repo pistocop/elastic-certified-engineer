@@ -31,4 +31,6 @@
 - `06_multicluster-configured`
   - 3 nodes divided in 2 clusters and already connected, 2 kibana (one for each cluster) - useful to test cross-cluster queries
 - `07_autorun_disabled`
-  - 1 Kibana, 2 nodes: 1 is executed as master, the 2nd run without launch Elasticsearch - useful to stop and rerun ES program
+  - 1 Kibana, 2 nodes: 1 is executed as master, the 2nd run without launch Elasticsearch - useful to stop and rerun ES instances
+- `08_autorun-disabled-3nodes`
+  - Same as `07_autorun_disabled` but with two nodes that doesn't launch Elasticsearch automatically - useful for test shard allocation
