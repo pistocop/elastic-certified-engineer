@@ -1,6 +1,9 @@
 node.name: es03
 cluster.name: es-docker-cluster
 network.host: 0.0.0.0
+path:
+  repo:
+    - /mnt/bkp
 discovery.seed_hosts:
   - es01
   - es02
