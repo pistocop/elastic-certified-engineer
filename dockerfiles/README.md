@@ -34,3 +34,5 @@
   - 1 Kibana, 2 nodes: 1 is executed as master, the 2nd run without launch Elasticsearch - useful to stop and rerun ES instances
 - `08_autorun-disabled-3nodes`
   - Same as `07_autorun_disabled` but with two nodes that doesn't launch Elasticsearch automatically - useful for test shard allocation
+- `09_blank-cluster`
+  - 1 Kibana, 3 nodes: cluster where each node don't automatically start it's service - useful to try and test different settings
