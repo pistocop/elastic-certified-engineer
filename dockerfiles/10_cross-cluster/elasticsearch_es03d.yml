@@ -1,0 +1,8 @@
+node.name: es03d
+cluster.name: cluster3
+network.host: 0.0.0.0
+bootstrap.memory_lock: true
+discovery.seed_hosts:
+  - es03m
+node.roles:
+  - data

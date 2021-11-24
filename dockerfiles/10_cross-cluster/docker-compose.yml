@@ -1,0 +1,115 @@
+version: '2.2'
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    container_name: es01
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+      - ./elasticsearch_es01.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
+    ports:
+      - 9200:9200
+    networks:
+      - cluster01net
+      - cluster02net
+      - cluster03net
+  es02:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    container_name: es02
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data02:/usr/share/elasticsearch/data
+      - ./elasticsearch_es02.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
+    networks:
+      - cluster02net
+  es03m:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    container_name: es03m
+    command: tail -F anything
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data03m:/usr/share/elasticsearch/data
+      - ./elasticsearch_es03m.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
+    networks:
+      - cluster03net
+  es03d:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    container_name: es03d
+    command: tail -F anything
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data03d:/usr/share/elasticsearch/data
+      - ./elasticsearch_es03d.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw
+    networks:
+      - cluster03net
+  kib01:
+    image: docker.elastic.co/kibana/kibana:7.13.0
+    container_name: kib01
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es01:9200
+    ports:
+      - 5601:5601
+    networks:
+      - cluster01net
+  kib02:
+    image: docker.elastic.co/kibana/kibana:7.13.0
+    container_name: kib02
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es02:9200
+    ports:
+      - 5602:5601
+    networks:
+      - cluster02net
+  kib03:
+    image: docker.elastic.co/kibana/kibana:7.13.0
+    container_name: kib03
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es03m:9200
+    ports:
+      - 5603:5601
+    networks:
+      - cluster03net
+
+volumes:
+  data01:
+    driver: local
+  data02:
+    driver: local
+  data03m:
+    driver: local
+  data03d:
+    driver: local
+
+networks:
+  cluster01net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+  cluster02net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+  cluster03net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"

@@ -15,7 +15,7 @@ services:
     ports:
       - 9200:9200
     networks:
-      - c1net
+      - clusternet
     depends_on:
       c2n1:
         condition: service_healthy
@@ -32,7 +32,7 @@ services:
       - data03:/usr/share/elasticsearch/data
       - ./elasticsearch_c1n2.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
     networks:
-      - c1net
+      - clusternet
   c2n1:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
     container_name: c2n1
@@ -48,7 +48,7 @@ services:
     ports:
       - 9201:9200
     networks:
-        - c1net
+        - clusternet
     healthcheck:
         test: ["CMD", "curl", "-f", "http://c2n1:9200"]
         interval: 15s
@@ -62,7 +62,7 @@ services:
     ports:
       - 5601:5601
     networks:
-      - c1net
+      - clusternet
   c2k1:
     image: docker.elastic.co/kibana/kibana:7.13.0
     container_name: c2kibana
@@ -71,7 +71,7 @@ services:
     ports:
       - 5602:5601
     networks:
-      - c1net
+      - clusternet
 
 volumes:
   data01:
@@ -82,7 +82,7 @@ volumes:
     driver: local
 
 networks:
-  c1net:
+  clusternet:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: "false"

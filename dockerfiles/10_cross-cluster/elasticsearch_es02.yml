@@ -1,0 +1,10 @@
+node.name: es02
+cluster.name: cluster2
+network.host: 0.0.0.0
+bootstrap.memory_lock: true
+cluster.initial_master_nodes:
+  - es02
+node.roles:
+  - master
+  - data
+
