@@ -7,3 +7,5 @@ bootstrap.memory_lock: true
 node.roles:
   - master
   - data
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true

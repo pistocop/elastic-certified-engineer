@@ -4,7 +4,6 @@
 # Following template source:
 # https://github.com/elastic/kibana/blob/main/config/kibana.yml
 
-# Local changeeeeeeeeesssssssssssssssssss;alskdjf;laskjdf;laskjdf;lask
 
 # =================== System: Kibana Server ===================
 # Kibana is served by a back end server. This setting specifies the port to use.
