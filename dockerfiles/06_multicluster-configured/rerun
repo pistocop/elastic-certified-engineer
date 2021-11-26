@@ -1,4 +1,9 @@
 #!/bin/bash
+function rmresources {
+	docker-compose down -v --remove-orphans
+}
+
+trap rmresources EXIT
 
 docker-compose down -v --remove-orphans
 docker-compose up
