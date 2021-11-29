@@ -39,3 +39,5 @@
   - 1 Kibana, 3 nodes: cluster where each node don't automatically start it's service - useful to try and test different settings
 - `10_cross-cluster`
   - 3 kibana, 4 nodes, 3 networks with `es01` that is on all the networks, 3 clusters, `es03m` and `es03d` autorun disabled - useful to test a cross cluster environment
+- `11_blank-minicluster`
+  - 1 kibana, 2 nodes, autorun disabled on ES nodes - useful to settings test (e.g. security)
