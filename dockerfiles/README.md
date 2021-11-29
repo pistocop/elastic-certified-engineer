@@ -40,4 +40,6 @@
 - `10_cross-cluster`
   - 3 kibana, 4 nodes, 3 networks with `es01` that is on all the networks, 3 clusters, `es03m` and `es03d` autorun disabled - useful to test a cross cluster environment
 - `11_blank-minicluster`
-  - 1 kibana, 2 nodes, autorun disabled on ES nodes - useful to settings test (e.g. security)
+  - 1 kibana, 2 nodes, autorun disabled on both ES and kibana nodes - useful to settings test (e.g. security)
+- `12_basic-security`
+  - 1 kibana, 2 node, autorun disabled on both ES and kibana nodes, security configurations provided - useful to test security aspects (e.g. roles, users etc.)

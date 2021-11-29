@@ -1,0 +1,6 @@
+# Configure kibana doc:
+# https://www.elastic.co/guide/en/kibana/current/settings.html#settings
+
+elasticsearch.hosts: [ "http://es01:9200" ]
+server.host: "0.0.0.0" # <- Node: with localhost docker-compose didn't work
+elasticsearch.username: kibana_system
