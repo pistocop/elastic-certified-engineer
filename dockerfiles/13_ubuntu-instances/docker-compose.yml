@@ -1,0 +1,48 @@
+version: '2.2'
+services:
+  node01:
+    image: osexp2000/ubuntu-with-utils
+    container_name: node01
+    command: tail -F anything
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+    networks:
+      - esnet
+
+  node02:
+    image: osexp2000/ubuntu-with-utils
+    container_name: node02
+    command: tail -F anything
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - esnet
+
+  node03:
+    image: osexp2000/ubuntu-with-utils
+    container_name: node03
+    command: tail -F anything
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - esnet
+
+networks:
+  esnet:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
