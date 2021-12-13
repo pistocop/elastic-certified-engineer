@@ -2,6 +2,7 @@ node.name: es02
 cluster.name: es-docker-cluster
 network.host: 0.0.0.0
 xpack.security.enabled: true
+xpack.license.self_generated.type: trial
 discovery.seed_hosts:
   - es01
 cluster.initial_master_nodes:

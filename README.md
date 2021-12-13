@@ -75,4 +75,4 @@ docker-compose -f your_config_file.yml down -v
     - Try again
 
 ## TODO
-- [ ] Review `rerun` script with teardown resources after `ctrl + c` exit command
+- [x] Review `rerun` script with teardown resources after `ctrl + c` exit command
