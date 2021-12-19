@@ -9,7 +9,7 @@
     # [Tip] if you are on WSL:
     $ sudo sysctl -w vm.max_map_count=262144 # <-- required
 
-    # Simple way
+    # Simple way (exit with "ctrl + c")
     $ bash rerun
 
     # Using docker-compose
