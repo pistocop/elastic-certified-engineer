@@ -73,6 +73,3 @@ docker-compose -f your_config_file.yml down -v
     - Close all WSL window instances
     - Reopen a WSL and clear all containers and volumes
     - Try again
-
-## TODO
-- [x] Review `rerun` script with teardown resources after `ctrl + c` exit command

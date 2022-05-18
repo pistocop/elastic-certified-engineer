@@ -9,7 +9,7 @@
     # [Tip] if you are on WSL:
     $ sudo sysctl -w vm.max_map_count=262144 # <-- required
 
-    # Simple way
+    # Simple way (exit with "ctrl + c")
     $ bash rerun
 
     # Using docker-compose
@@ -47,3 +47,4 @@
   - 3 ubuntu nodes connected on the same network - useful for zero-to-up setup
 - `14_minicluster`
   - 1 kibana, 3 nodes, all nodes with all roles
+  - 3 ubuntu nodes connected on the same network - useful for zero-to-up setup
