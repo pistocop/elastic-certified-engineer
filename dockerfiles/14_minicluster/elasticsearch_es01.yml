@@ -1,0 +1,18 @@
+node.name: es01
+cluster.name: es-docker-cluster
+network.host: 0.0.0.0
+discovery.seed_hosts:
+  - es02
+  - es03
+cluster.initial_master_nodes:
+  - es01
+  - es02
+  - es03
+bootstrap.memory_lock: true
+node.roles:
+  - master
+  - data
+  - ingest
+  - ml
+  - transform
+  - remote_cluster_client

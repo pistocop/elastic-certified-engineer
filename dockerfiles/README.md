@@ -45,3 +45,5 @@
   - 1 kibana, 2 node, autorun disabled on both ES and kibana nodes, security configurations provided - useful to test security aspects (e.g. roles, users etc.)
 - `13_ubuntu-instances`
   - 3 ubuntu nodes connected on the same network - useful for zero-to-up setup
+- `14_minicluster`
+  - 1 kibana, 3 nodes, all nodes with all roles
