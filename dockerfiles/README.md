@@ -47,4 +47,3 @@
   - 3 ubuntu nodes connected on the same network - useful for zero-to-up setup
 - `14_minicluster`
   - 1 kibana, 3 nodes, all nodes with all roles
-  - 3 ubuntu nodes connected on the same network - useful for zero-to-up setup
