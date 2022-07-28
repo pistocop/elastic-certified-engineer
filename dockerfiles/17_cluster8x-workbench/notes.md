@@ -1,8 +1,8 @@
-# 17_custom-cluster8x
+# 17_cluster8x-workbench
 > Hacking around to learn how certificate and security work on elasticsearch 8.x
 
 ## Usage
-- 
+- This is only a workbench zone, use instead cluster `18` for an end-to-end solution
 
 ## Takeaways
 - Elasticsearch password must be > 8 characters
