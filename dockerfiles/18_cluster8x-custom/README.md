@@ -1,4 +1,4 @@
-# 03-securitynodes
+# 18_cluster8x-custom
 > deploy Elasticsearch v8.X locally with certificates generation and injection
 
 ## Usage
