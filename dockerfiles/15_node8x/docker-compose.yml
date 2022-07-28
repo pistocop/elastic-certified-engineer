@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.2.2
+    ports:
+      - "9200:9200"
+    environment:
+      - node.name=es01
+      - cluster.name=${CLUSTER_NAME}
+      - ELASTIC_PASSWORD=123psw
+      - cluster.initial_master_nodes=es01
+      # - discovery.seed_hosts=es02,es03
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=certs/es01/es01.key
+      - xpack.security.http.ssl.certificate=certs/es01/es01.crt
+      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.http.ssl.verification_mode=certificate
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.key=certs/es01/es01.key
+      - xpack.security.transport.ssl.certificate=certs/es01/es01.crt
+      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.license.self_generated.type=basic
+    mem_limit: ${MEM_LIMIT}
+    command: tail -F anything
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
