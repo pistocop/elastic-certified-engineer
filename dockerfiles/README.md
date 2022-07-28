@@ -47,4 +47,6 @@
   - 3 ubuntu nodes connected on the same network - useful for zero-to-up setup
 - `14_minicluster`
   - 1 kibana, 3 nodes, all nodes with all roles
+- `17_cluster8x-workbench`
+  - 3 nodes with Elasticsearch version 8.2.2 and custom certificate injection
 - TODO: update this documentation
