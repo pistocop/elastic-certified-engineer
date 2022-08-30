@@ -49,4 +49,7 @@
   - 1 kibana, 3 nodes, all nodes with all roles
 - `17_cluster8x-workbench`
   - 3 nodes with Elasticsearch version 8.2.2 and custom certificate injection
-- TODO: update this documentation
+- `18_cluster8x-custom`
+  - 3 nodes, Elasticsearch v8.X with certificates generation and injection
+- `19_cluster8x-nginx`
+  - 3 nodes, Elasticsearch v8.X with certificates generation and injection, nginx reverse proxy
