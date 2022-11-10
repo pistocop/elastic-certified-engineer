@@ -43,6 +43,7 @@
 - [x] enable https connection to nginx
   - Documentation for nginx SSL: https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-16-04
     - WARNING: this cluster will be not tailored for strong security (e.g. no *strong Diffie-Hellman group*) - not all steps of the guide will be followed
+- [ ] nginx build process require `certs` folder into `nginx` folder, how cope with it? how manage the folders scaffolding?
 - [ ] make the program completed and automated
   - is possible to make the request with:
     - ```

@@ -1,6 +1,12 @@
 # Different ES architecture 
 > Useful to study each characteristic of a ES cluster
 
+
+**⚠️ Warning:** 
+Clusters from `01` up to `14` was build and used to prepare the ES certificate exam and contain better documentation.
+Other clusters (`>14`) are build for testing purposes and there is no guardantee about clarity and functioning.
+
+
 **How to use**
 - Run your docker daemon (e.g. on Windows: docker desktop app)
 - Navigate with the CLI (e.g. on Windows: using the WSL) inside the folder of desired architecture

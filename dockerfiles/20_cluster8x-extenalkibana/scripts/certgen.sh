@@ -35,5 +35,11 @@ echo -ne \
 "    ip:\n"\
 "      - 127.0.0.1\n"\
 > mount/certs/instances.yml;
-bin/elasticsearch-certutil cert --silent --pem -out mount/certs/certs.zip --in mount/certs/instances.yml --ca-cert mount/certs/ca/ca.crt --ca-key mount/certs/ca/ca.key;
+
+# TODO avoid password
+bin/elasticsearch-certutil cert --silent --pass test1 \
+                                --in mount/certs/instances.yml \
+                                --out mount/certs/certs.zip \
+                                --ca-cert mount/certs/ca/ca.crt \
+                                --ca-key mount/certs/ca/ca.key;
 unzip mount/certs/certs.zip -d mount/certs;
