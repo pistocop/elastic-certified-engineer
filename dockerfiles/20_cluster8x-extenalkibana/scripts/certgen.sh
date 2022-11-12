@@ -37,9 +37,10 @@ echo -ne \
 > mount/certs/instances.yml;
 
 # TODO avoid password
-bin/elasticsearch-certutil cert --silent --pass test1 \
+bin/elasticsearch-certutil cert --silent --pass "" \
                                 --in mount/certs/instances.yml \
                                 --out mount/certs/certs.zip \
                                 --ca-cert mount/certs/ca/ca.crt \
                                 --ca-key mount/certs/ca/ca.key;
 unzip mount/certs/certs.zip -d mount/certs;
+touch mount/certs/foo
